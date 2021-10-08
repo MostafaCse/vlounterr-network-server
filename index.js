@@ -64,4 +64,4 @@ app.get('/', (req, res) => {
     res.send("hello hani nai");
 })
 
-app.listen(50000 || process.env.port)
+app.listen(process.env.PORT)
