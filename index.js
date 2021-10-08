@@ -22,7 +22,6 @@ client.connect(err => {
     app.get('/ServiceInfo',(req,res)=>{
         const pd=collection.find({})
         .toArray((err,document)=>{
-            console.log(document);
         res.send(document);
     })
     })
