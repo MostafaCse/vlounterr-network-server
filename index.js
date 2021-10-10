@@ -41,7 +41,7 @@ client.connect(err => {
 
     app.post('/addEvent', (req, res) => {
         const Images = req.files.file;
-        const { EventTitle, EventDate, Description } = req.body;
+        const { EventTitle} = req.body;
         const filePath = `${__dirname}/Images/${Images.name}`;
         Images.mv(filePath, err => {
             if (err) {
@@ -55,7 +55,7 @@ client.connect(err => {
                 size: req.files.file.size,
                 img: Buffer(enImg, 'base64')
             }
-            collection.insertOne({ EventTitle: EventTitle, EventDate: EventDate, Description: Description, Images: Images })
+            collection.insertOne({ EventTitle: EventTitle,Images: Images })
                 .then(result => {
                     console.log("Submit successfully");
                     res.send("Submit successfully")
