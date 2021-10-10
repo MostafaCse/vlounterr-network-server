@@ -20,7 +20,7 @@ client.connect(err => {
     console.log("inside collcetion");
 
     app.get('/serviceInfo', (req, res) => {
-        collection.find({EventTitle,Images})
+        collection.find({EventTitle:EventTitle ,Images:Images})
             .toArray((err, documents) => {
                 res.send(documents);
             })
