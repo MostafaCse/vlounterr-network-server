@@ -19,14 +19,26 @@ client.connect(err => {
     const collection = client.db('volunteerNetwork').collection('workInfo');
     console.log("inside collcetion");
 
-    app.get('/ServiceInfo', (req, res) => {
+    app.get('/serviceInfo', (req, res) => {
         collection.find({})
             .toArray((err, documents) => {
                 res.send(documents);
             })
     
     });
-  
+
+  app.post('/registerInfo',(req,res)=>{
+      const regData= req.body;
+      if(regData!=null){
+          console.log("yes");
+          res.send("submitted sucessfully");
+      }
+      else{
+          console.log("no");
+          res.send("try again later")
+      }
+  })
+
     app.post('/addEvent', (req, res) => {
         const Images = req.files.file;
         const { EventTitle, EventDate, Description } = req.body;
@@ -64,4 +76,4 @@ app.get('/', (req, res) => {
     res.send("hello hani nai");
 })
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT || 50000)
