@@ -17,10 +17,13 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 client.connect(err => {
     const collection = client.db('volunteerNetwork').collection('workInfo');
+    const registerInfo= client.db('volunteerNetwork').collection('registration');
+    
+
     console.log("inside collcetion");
 
     app.get('/serviceInfo', (req, res) => {
-        collection.find({}).select('EventTitle','Images')
+        collection.find({})
             .toArray((err, documents) => {
                 res.send(documents);
             })
