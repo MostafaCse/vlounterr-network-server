@@ -40,6 +40,12 @@ client.connect(err => {
         res.send("Error");
       })
   })
+  app.get('/regInfo',(req,res)=>{
+      registerInfo.find({})
+      .toArray((err,documents)=>{
+          res.send(documents);
+      })
+  })
 
     app.post('/addEvent', (req, res) => {
         const Images = req.files.file;
