@@ -34,12 +34,10 @@ client.connect(err => {
       const regData= req.body;
       registerInfo.insertOne(regData)
       .then(result=>{
-          console.log(result);
-          res.send(result);
+          res.send("Submitted successfully");
       })
       .catch(err=>{
-        console.log(err);
-        res.send(err);
+        res.send("Error");
       })
   })
 
