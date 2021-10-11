@@ -52,10 +52,7 @@ client.connect(err => {
         const { EventTitle} = req.body;
         const filePath = `${__dirname}/Images/${Images.name}`;
         Images.mv(filePath, err => {
-            if (err) {
-                console.log("form error");
-                return res.send("from error");
-            }
+            if (err) { return res.send("from error");}
             const newImg = fs.readFileSync(filePath);
             const enImg = newImg.toString('base64');
             var image = {
@@ -63,17 +60,9 @@ client.connect(err => {
                 size: req.files.file.size,
                 img: Buffer(enImg, 'base64')
             }
-            collection.insertOne({ EventTitle: EventTitle,Images: Images })
-                .then(result => {
-                    console.log("Submit successfully");
-                    res.send("Submit successfully")
-                })
-
-                .catch(err => {
-                    console.log("Submit cannot be performed")
-                    res.send("Submit cannot be performed")
-
-                })
+          collection.insertOne({ EventTitle: EventTitle,Images: Images })
+               .then(result =>res.send("Submit successfully"))
+             .catch(err =>res.send(err))
         });
 
     })
