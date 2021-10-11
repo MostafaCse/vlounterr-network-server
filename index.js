@@ -32,14 +32,15 @@ client.connect(err => {
 
   app.post('/registerInfo',(req,res)=>{
       const regData= req.body;
-      if(regData!=null){
-          console.log("yes");
-          res.send("submitted sucessfully");
-      }
-      else{
-          console.log("no");
-          res.send("try again later")
-      }
+      registerInfo.insertOne(regData)
+      .then(result=>{
+          console.log(result);
+          res.send(result);
+      })
+      .catch(err=>{
+        console.log(err);
+        res.send(err);
+      })
   })
 
     app.post('/addEvent', (req, res) => {
